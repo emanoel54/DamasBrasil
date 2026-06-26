@@ -1,9 +1,11 @@
 Jogo de Damas 8x8 para Linux (Regra Brasileira) 
+
 Olá, entusiastas do código livre e amantes do Linux! É com grande satisfação 
 que disponibilizo para a comunidade um projeto de Jogo de Damas 8x8, 
 desenvolvido especificamente sob a Regra Brasileira. O programa foi construído 
 utilizando a biblioteca gráfica GTK, garantindo uma interface limpa, leve e perfeitamente 
 integrada a distribuições como Debian, Ubuntu, Linux Mint, MX Linux e derivados. 
+
 Trata-se de um software de código aberto, distribuído gratuitamente e sem garantias, 
 ideal para quem quer se divertir ou estudar a implementação de jogos em C++. 
 O pacote completo do projeto traz uma estrutura organizada para facilitar tanto a execução 
@@ -16,6 +18,7 @@ Empacotamento: Inclui um arquivo CMakeLists.txt para compilação simplificada, 
 o pacote pronto patriotas_1.0_amd64.deb para instalação direta via terminal ou gerenciador de pacotes. 
 ●​ Documentação: Acompanha o arquivo de LICENSE e o Explicacao_Funcoes.md, que detalha o funcionamento 
 interno para desenvolvedores. Aviso Importante: 
+
 Este software é disponibilizado "como está", sem garantias de qualquer 📥 tipo. 
 Faça o download do projeto aqui. 
 Apoie o Projeto! Se você gostou da iniciativa, quer incentivar o desenvolvimento de mais softwares 
