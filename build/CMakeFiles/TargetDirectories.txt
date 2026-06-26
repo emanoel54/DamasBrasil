@@ -1,0 +1,3 @@
+/home/emanoel/projeto_damas/DamasBrasil/build/CMakeFiles/patriotas.dir
+/home/emanoel/projeto_damas/DamasBrasil/build/CMakeFiles/edit_cache.dir
+/home/emanoel/projeto_damas/DamasBrasil/build/CMakeFiles/rebuild_cache.dir

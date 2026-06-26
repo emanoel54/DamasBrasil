@@ -1,0 +1,6 @@
+#!/bin/bash
+# Da permissao total (777) as pastas de dados apos instalar.
+# Assim a IA pode evoluir e salvar seus txts sem erro de permissao.
+chmod -R 777 /opt/patriotas/data 2>/dev/null || true
+chmod -R 777 /opt/patriotas/db 2>/dev/null || true
+exit 0

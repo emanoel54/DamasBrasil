@@ -1,0 +1,10 @@
+Package: patriotas
+Version: 1.0
+Section: games
+Priority: optional
+Architecture: amd64
+Depends: libgtk-3-0, libgtkmm-3.0-1v5, libzstd1, alsa-utils
+Maintainer: Emanoel Libonati <brasillinux20@gmail.com>
+Description: Patriotas - Motor de Jogo de Damas Brasileiro
+ Interface e motor IA para o Jogo de Damas na regra brasileira (64 casas).
+ Possui aprendizado continuo (Reinforcement Learning) e Base de Finais.

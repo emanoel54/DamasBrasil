@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=Patriotas
+Comment=Motor de Damas Brasileiro IA
+Exec=bash -c "/opt/patriotas/patriotas > /dev/null 2>&1"
+Path=/opt/patriotas
+Icon=patriotas
+Terminal=false
+Type=Application
+Categories=Game;BoardGame;
