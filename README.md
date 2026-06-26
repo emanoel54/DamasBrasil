@@ -15,7 +15,11 @@ img (peças e tabuleiro) e build (arquivos de compilação). ●​ Código-Font
 de forma modular com o ponto de entrada em main.cpp, a inteligência artificial em damas_ai, 
 o motor principal em damas_core e o suporte ao protocolo de damas em damas_dxp. ●​ Automatização e 
 Empacotamento: Inclui um arquivo CMakeLists.txt para compilação simplificada, o script criar_deb.sh e 
-o pacote pronto patriotas_1.0_amd64.deb para instalação direta via terminal ou gerenciador de pacotes. 
+o pacote pronto 
+
+patriotas_1.0_amd64.deb 
+
+para instalação direta via terminal ou gerenciador de pacotes. 
 ●​ Documentação: Acompanha o arquivo de LICENSE e o Explicacao_Funcoes.md, que detalha o funcionamento 
 interno para desenvolvedores. Aviso Importante: 
 
