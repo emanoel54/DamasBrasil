@@ -28,3 +28,5 @@ Chave Pix (E-mail): brasillinux20@gmail.com
 
 Fiquem à vontade para testar, clonar, reportar bugs e contribuir para o aprimoramento do projeto. 
 Divirtam-se jogando e programando!
+
+Emanoel Libonati
