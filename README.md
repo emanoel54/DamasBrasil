@@ -8,6 +8,7 @@ integrada a distribuições como Debian, Ubuntu, Linux Mint, MX Linux e derivado
 
 Trata-se de um software de código aberto, distribuído gratuitamente e sem garantias, 
 ideal para quem quer se divertir ou estudar a implementação de jogos em C++. 
+
 O pacote completo do projeto traz uma estrutura organizada para facilitar tanto a execução 
 quanto a modificação do código. Como você pode conferir na imagem, o diretório inclui: 
 ●​ Pastas de Recursos: audio (efeitos sonoros), data e db (armazenamento de dados/histórico), 
