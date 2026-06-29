@@ -149,6 +149,7 @@ protected:
     };
     GameMode m_game_mode = GameMode::HUM_VS_HUM; // Default to Human vs Human
     void set_game_mode(GameMode mode);
+    void set_menus_sensitive(bool sensitive);
     void check_for_ai_move();
 
     // --- Estado do Jogo ---
@@ -211,6 +212,14 @@ protected:
     // Pointers to menu items for sensitivity control
     Gtk::MenuItem* m_undo_item = nullptr;
     Gtk::MenuItem* m_redo_item = nullptr;
+    Gtk::MenuItem* m_arquivo_menu_item = nullptr;
+    Gtk::MenuItem* m_mode_menu_item = nullptr;
+    Gtk::MenuItem* m_level_menu_item = nullptr;
+    Gtk::MenuItem* m_rede_menu_item = nullptr;
+    Gtk::MenuItem* m_aprender_menu_item = nullptr;
+    Gtk::MenuItem* m_resize_item = nullptr;
+    Gtk::MenuItem* m_flip_item = nullptr;
+    Gtk::MenuItem* m_setup_menu_item = nullptr;
 
     Gtk::MenuItem* m_connect_item = nullptr;
     Gtk::MenuItem* m_disconnect_item = nullptr;
@@ -367,9 +376,9 @@ MainWindow::~MainWindow()
 void MainWindow::create_menu_bar()
 {
     // --- Menu "Arquivo" ---
-    auto arquivo_menu_item = Gtk::make_managed<Gtk::MenuItem>("_Arquivo", true);
+    m_arquivo_menu_item = Gtk::make_managed<Gtk::MenuItem>("_Arquivo", true);
     auto arquivo_menu = Gtk::make_managed<Gtk::Menu>();
-    arquivo_menu_item->set_submenu(*arquivo_menu);
+    m_arquivo_menu_item->set_submenu(*arquivo_menu);
 
     auto new_game_item = Gtk::make_managed<Gtk::MenuItem>("_Novo Jogo", true);
     new_game_item->signal_activate().connect([this]() {
@@ -384,9 +393,9 @@ void MainWindow::create_menu_bar()
     arquivo_menu->append(*new_game_item);
 
     // --- Novo Menu "Modo" ---
-    auto mode_menu_item = Gtk::make_managed<Gtk::MenuItem>("_Modo", true);
+    m_mode_menu_item = Gtk::make_managed<Gtk::MenuItem>("_Modo", true);
     auto mode_menu = Gtk::make_managed<Gtk::Menu>();
-    mode_menu_item->set_submenu(*mode_menu);
+    m_mode_menu_item->set_submenu(*mode_menu);
 
     Gtk::RadioMenuItem::Group mode_group;
 
@@ -432,9 +441,9 @@ void MainWindow::create_menu_bar()
     mode_menu->append(*m_analysis_item);
 
     // --- Novo Menu "Nível" ---
-    auto level_menu_item = Gtk::make_managed<Gtk::MenuItem>("_Nível", true);
+    m_level_menu_item = Gtk::make_managed<Gtk::MenuItem>("_Nível", true);
     auto level_menu = Gtk::make_managed<Gtk::Menu>();
-    level_menu_item->set_submenu(*level_menu);
+    m_level_menu_item->set_submenu(*level_menu);
 
     Gtk::RadioMenuItem::Group level_group;
     const int time_options[] = {1, 3, 5, 10, 15, 20, 30, 60};
@@ -625,9 +634,9 @@ void MainWindow::create_menu_bar()
     help_menu->append(*about_item);
 
     // --- Novo Menu "Aprender" ---
-    auto aprender_menu_item = Gtk::make_managed<Gtk::MenuItem>("_Aprender", true);
+    m_aprender_menu_item = Gtk::make_managed<Gtk::MenuItem>("_Aprender", true);
     auto aprender_menu = Gtk::make_managed<Gtk::Menu>();
-    aprender_menu_item->set_submenu(*aprender_menu);
+    m_aprender_menu_item->set_submenu(*aprender_menu);
 
     auto corrigir_item = Gtk::make_managed<Gtk::MenuItem>("Aprender com Correção", true);
     corrigir_item->signal_activate().connect([this]() {
@@ -649,9 +658,9 @@ void MainWindow::create_menu_bar()
     aprender_menu->append(*corrigir_item);
 
     // --- Novo Menu "Rede" ---
-    auto rede_menu_item = Gtk::make_managed<Gtk::MenuItem>("_Rede", true);
+    m_rede_menu_item = Gtk::make_managed<Gtk::MenuItem>("_Rede", true);
     auto rede_menu = Gtk::make_managed<Gtk::Menu>();
-    rede_menu_item->set_submenu(*rede_menu);
+    m_rede_menu_item->set_submenu(*rede_menu);
 
     m_connect_item = Gtk::make_managed<Gtk::MenuItem>("_Conectar", true);
     m_connect_item->signal_activate().connect(sigc::mem_fun(*this, &MainWindow::on_connect_activated));
@@ -667,8 +676,8 @@ void MainWindow::create_menu_bar()
     auto board_menu = Gtk::make_managed<Gtk::Menu>();
     board_menu_item->set_submenu(*board_menu);
 
-    auto resize_item = Gtk::make_managed<Gtk::MenuItem>("_Redimensionar", true);
-    resize_item->signal_activate().connect([this]() {
+    m_resize_item = Gtk::make_managed<Gtk::MenuItem>("_Redimensionar", true);
+    m_resize_item->signal_activate().connect([this]() {
         // Dimensões base (tamanho pequeno)
         const int BASE_SQUARE_SIZE = 60;
         const int BASE_RULE_PADDING = 60;
@@ -700,20 +709,20 @@ void MainWindow::create_menu_bar()
         update_ui_dimensions(target_square_size, target_rule_padding, target_window_width, target_window_height);
         m_is_large = !m_is_large; // Inverte o estado
     });
-    board_menu->append(*resize_item);
+    board_menu->append(*m_resize_item);
 
-    auto flip_item = Gtk::make_managed<Gtk::MenuItem>("_Girar", true);
-    flip_item->set_sensitive(true); // Habilitado para permitir o giro do tabuleiro
-    flip_item->signal_activate().connect([this]() {
+    m_flip_item = Gtk::make_managed<Gtk::MenuItem>("_Girar", true);
+    m_flip_item->set_sensitive(true); // Habilitado para permitir o giro do tabuleiro
+    m_flip_item->signal_activate().connect([this]() {
         m_is_flipped = !m_is_flipped; // Inverte o estado de rotação
         update_board_orientation();
     });
-    board_menu->append(*flip_item);
+    board_menu->append(*m_flip_item);
 
     // NOVO: Submenu "Montar"
-    auto setup_menu_item = Gtk::make_managed<Gtk::MenuItem>("_Montar", true);
-    setup_menu_item->signal_activate().connect(sigc::mem_fun(*this, &MainWindow::on_setup_board_activated));
-    board_menu->append(*setup_menu_item);
+    m_setup_menu_item = Gtk::make_managed<Gtk::MenuItem>("_Montar", true);
+    m_setup_menu_item->signal_activate().connect(sigc::mem_fun(*this, &MainWindow::on_setup_board_activated));
+    board_menu->append(*m_setup_menu_item);
 
     board_menu->append(*Gtk::make_managed<Gtk::SeparatorMenuItem>());
 
@@ -740,12 +749,12 @@ void MainWindow::create_menu_bar()
     board_menu->append(*m_redo_item);
 
     // Adiciona os menus à barra na ordem definida
-    m_menu_bar.append(*arquivo_menu_item);
+    m_menu_bar.append(*m_arquivo_menu_item);
     m_menu_bar.append(*board_menu_item);
-    m_menu_bar.append(*mode_menu_item);
-    m_menu_bar.append(*level_menu_item);
-    m_menu_bar.append(*rede_menu_item);
-    m_menu_bar.append(*aprender_menu_item);
+    m_menu_bar.append(*m_mode_menu_item);
+    m_menu_bar.append(*m_level_menu_item);
+    m_menu_bar.append(*m_rede_menu_item);
+    m_menu_bar.append(*m_aprender_menu_item);
     m_menu_bar.append(*help_menu_item);
 
     // --- Indicador Dinâmico de Rede ---
@@ -1002,7 +1011,8 @@ void MainWindow::on_setup_board_activated() {
         DamasCore::interrupt_search();
     }
     m_in_setup_mode = true;
-    m_right_panel_stack.set_visible_child("palette_panel"); // Alterna para a paleta
+    set_menus_sensitive(false); // Desativa os menus para focar na montagem
+    m_right_panel_stack.set_visible_child("palette_panel");
     m_selected_square = -1; // Limpa qualquer casa selecionada
     m_possible_moves_bitboard = 0; // Limpa movimentos possíveis
     m_possible_capture_moves.clear(); // Limpa capturas possíveis
@@ -1559,7 +1569,8 @@ void MainWindow::on_setup_black_turn_clicked() {
 
 void MainWindow::on_setup_done_clicked() {
     m_in_setup_mode = false;
-    m_game_state.definir_turno_atual(m_setup_turn);
+    set_menus_sensitive(true); // Reativa os menus
+    m_game_state.definir_turno_atual(m_setup_turn); 
     m_game_state.recalcular_hash_completo();
     m_selected_palette_tool = PaletteTool::NONE;
     m_palette_vbox->queue_draw(); // Redesenha a paleta para remover destaques
@@ -1601,7 +1612,25 @@ void MainWindow::set_game_mode(GameMode mode) {
     check_for_ai_move();
 }
 
+void MainWindow::set_menus_sensitive(bool sensitive) {
+    if (m_arquivo_menu_item) m_arquivo_menu_item->set_sensitive(sensitive);
+    if (m_mode_menu_item) m_mode_menu_item->set_sensitive(sensitive);
+    if (m_level_menu_item) m_level_menu_item->set_sensitive(sensitive);
+    if (m_rede_menu_item) m_rede_menu_item->set_sensitive(sensitive);
+    if (m_aprender_menu_item) m_aprender_menu_item->set_sensitive(sensitive);
+    if (m_resize_item) m_resize_item->set_sensitive(sensitive);
+    if (m_flip_item) m_flip_item->set_sensitive(sensitive);
+    // O próprio botão "Montar" também é desativado para evitar reentrar no modo
+    if (m_setup_menu_item) m_setup_menu_item->set_sensitive(sensitive);
+}
+
 void MainWindow::check_for_ai_move() {
+    // Bloqueia qualquer tentativa de iniciar a IA enquanto o modo de montagem estiver ativo.
+    // A IA só deve ser acionada após o usuário clicar em "Pronto".
+    if (m_in_setup_mode) {
+        return;
+    }
+
     bool is_ai_turn = false;
 
     if (m_game_mode == GameMode::ANALYSIS) {
