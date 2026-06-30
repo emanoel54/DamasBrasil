@@ -1911,6 +1911,18 @@ bool MainWindow::check_game_over_state() {
 }
 
 void MainWindow::show_game_over_dialog(const std::string& message) {
+    // Para a IA não continuar jogando em loop após o fim do jogo
+    if (m_ai_chain_timer_conn) {
+        m_ai_chain_timer_conn.disconnect();
+    }
+    if (m_is_ai_turn_active) {
+        m_discard_next_ai_move = true;
+        DamasCore::interrupt_search();
+    }
+
+    Gtk::MessageDialog dialog(*this, "Fim de Jogo", false, Gtk::MESSAGE_INFO, Gtk::BUTTONS_OK, true);
+    dialog.set_secondary_text(message);
+    dialog.run();
 }
 
 void MainWindow::set_palette_tool(PaletteTool tool) {
