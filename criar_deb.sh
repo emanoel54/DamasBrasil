@@ -4,7 +4,7 @@ cp -r /opt/patriotas/data/ /home/emanoel/.
 
 # Configurações do pacote
 PKG_NAME="patriotas"
-VERSION="1.0"
+VERSION="1.1"
 ARCH="amd64"
 BUILD_DIR="${PKG_NAME}_${VERSION}_${ARCH}"
 

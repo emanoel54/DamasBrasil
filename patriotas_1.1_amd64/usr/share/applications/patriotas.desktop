@@ -1,5 +1,5 @@
 [Desktop Entry]
-Version=1.0
+Version=1.1
 Name=Patriotas
 Comment=Motor de Damas Brasileiro IA
 Exec=bash -c "/opt/patriotas/patriotas > /dev/null 2>&1"
