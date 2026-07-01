@@ -385,7 +385,7 @@ private:
     BoardBitboard _pretas_peoes;
     BoardBitboard _brancas_damas;
     BoardBitboard _pretas_damas;
-    int _half_move_clock; // Relógio de meios-movimentos para empates (Regra dos 10 lances)
+    int _half_move_clock; // Relógio de meios-movimentos para empates (Regra dos 20 lances)
 
     uint64_t _current_hash; // Hash Zobrist da posição atual
 

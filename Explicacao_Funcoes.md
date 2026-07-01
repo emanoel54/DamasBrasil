@@ -58,7 +58,7 @@ Contém a implementação da interface usando `GTKmm 3.0`. A classe `MainWindow`
 *   **`on_undo_activated() / on_redo_activated()`**: Gerencia o voltar/avançar navegando na pilha `m_history_stack`.
 
 ### Ciclo de Jogo e IA
-*   **`check_game_over_state()`**: Analisa a vitória por extinção de peças inimigas, por falta de movimentos (bloqueio) ou por empates de regra (10 lances de Damas sem captura/avanço de peão, e repetição de posições).
+*   **`check_game_over_state()`**: Analisa a vitória por extinção de peças inimigas, por falta de movimentos (bloqueio) ou por empates de regra (20 lances de Damas sem captura/avanço de peão, e repetição de posições).
 *   **`check_for_ai_move()`**: Dispara o início do processamento da Thread de IA dependendo de quem é o turno e qual o modo de jogo atual (`HUM_VS_HUM`, `HUM_VS_AI`, `AI_VS_AI` ou `ANALYSIS`).
 *   **`on_ai_move_ready()`**: Dispatcher acionado quando a IA decide seu lance; aplica ele ao tabuleiro e redesenha a tela.
 *   **`on_update_analysis_timer()`**: Timer periódico que atualiza a GUI com pontuação, nós analisados e profundidade da IA no painel lateral em tempo real.

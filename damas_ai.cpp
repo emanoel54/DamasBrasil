@@ -1175,11 +1175,11 @@ int PatriotasEngine::alpha_beta(BoardState pos, int depth, int alpha, int beta, 
 
     if (ply >= 1023) return evaluate(pos); // Previne estouro de limite do array de historico de repeticao
 
-    if (pos.obter_relogio_meio_movimento() >= 20) {
+    if (pos.obter_relogio_meio_movimento() >= 40) {
         if (g_debug_arvore) {
-            std::cout << std::string(ply * 2, ' ') << "[AlphaBeta] <- Poda Empate 10 Lances\n";
+            std::cout << std::string(ply * 2, ' ') << "[AlphaBeta] <- Poda Empate 20 Lances\n";
         }
-        return 0; // Poda absoluta para Empate (Regra dos 10 lances)
+        return 0; // Poda absoluta para Empate (Regra dos 20 lances)
     }
 
     uint64_t hash = pos.obter_hash();

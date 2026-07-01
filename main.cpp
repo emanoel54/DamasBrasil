@@ -1888,10 +1888,10 @@ bool MainWindow::check_game_over_state() {
         return true;
     }
 
-    // 3. Regra de Empate: 20 meios-movimentos (10 lances)
-    if (m_game_state.obter_relogio_meio_movimento() >= 20) {
+    // 3. Regra de Empate: 40 meios-movimentos (20 lances)
+    if (m_game_state.obter_relogio_meio_movimento() >= 40) {
         enviar_dxp_game_end('2'); // Envia código padrão DXP '2' para empate
-        show_game_over_dialog("Empate!\nRegra de 10 lances consecutivos de Damas sem captura ou avanço de peão.");
+        show_game_over_dialog("Empate!\nRegra de 20 lances consecutivos de Damas sem captura ou avanço de peão.");
         return true;
     }
 
